@@ -64,6 +64,6 @@ import { UploadFormComponent } from './upload-form/upload-form.component';
 export class AppModule { 
     constructor(ngRedux: NgRedux<IAppState>, devTools: DevToolsExtension){
         let enhancers = isDevMode ? [devTools.enhancer()] : [];
-        ngRedux.configureStore(rootReducer,INITIAL_STATE,[],enhancers);
+        ngRedux.configureStore(rootReducer,INITIAL_STATE);
     }
 }
