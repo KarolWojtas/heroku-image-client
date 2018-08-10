@@ -1,0 +1,10 @@
+img{
+	max-height: 90%;
+	max-width: 90%;
+	margin: auto;
+	display: block;
+}
+div.image-wrapper{
+	height: 300px;
+	background-color: rgb(201, 216, 242);
+}

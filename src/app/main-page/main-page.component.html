@@ -1,0 +1,20 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-3">
+			<login></login>
+		</div>
+		<div class="col-md-6">
+			<div *ngIf="this.imageService.images!==undefined">
+		
+			</div>
+			<div *ngFor="let image of images | async">
+				<image-card [image]="image" [secure]="false"></image-card>
+			</div>
+			
+		</div>
+		<div class="col-md-3">
+			
+			<alert-box></alert-box>
+		</div>
+	</div>
+</div>

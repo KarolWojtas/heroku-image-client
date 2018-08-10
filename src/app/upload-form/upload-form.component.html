@@ -1,0 +1,41 @@
+<div class="card mt-2">
+	<div class="card-body">
+		<form [formGroup]="form" (ngSubmit)="submit()" class="p-2"enctype="multipart/form-data">
+			<div class="form-group row">
+				<label for="file" class="col-sm-3 col-form-label">Choose file to upload:</label>
+				<div class="col-sm-9">
+					<input class="form-control-file" id="file" type="file"name="file" formControlName="file"
+						(change)="onFileSelected($event)"
+					/>
+				</div>
+				
+			</div>
+			<div class="form-group row">
+				<label for="description" class="col-sm-3 col-form-label" >Description:</label>
+				<div class="col-sm-9">
+					<input id="description" formControlName="description" type="text" class="form-control"/>
+				</div>
+				
+			</div>
+			<div class="form-group row">
+				<label for="isPublic" class="col-sm-3 col-form-label" >Choose privacy</label>
+				<div class="col-sm-9">
+					<div class="form-check">
+						<label for="trueRadio" class="form-check-label">Public</label>
+						<input type="radio" name="isPublic" value="true" formControlName="isPublic" id="trueRadio">
+						
+					</div>
+					<div class="form-check">
+						<label for="falseRadio" class="form-check-label">Private</label>
+						<input type="radio" name="isPublic" value="false" formControlName="isPublic" id="falseRadio">
+					</div>
+				</div>
+				
+			</div>
+			<button type="submit"class="btn" [disabled]="form.invalid" [ngClass]="{
+				'btn-danger': form.invalid&&form.touched,
+				'btn-success': form.valid&&form.touched
+			}">Send</button>
+		</form>
+	</div>
+</div>

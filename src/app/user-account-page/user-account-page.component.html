@@ -1,0 +1,73 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-8">
+		<div class="row">
+			<div class="col-md-12">
+				<ul class="nav nav-tabs nav-fill mt-2">
+			<li class="nav-item">
+				<span class="nav-link" (click)="selectTab(1)" [class.active]="activeTab==1">
+					My images
+				</span>
+			</li>
+			<li class="nav-item">
+				<span class="nav-link" (click)="selectTab(2)" [class.active]="activeTab==2">
+					Upload image
+				</span>
+			</li>
+			<li class="nav-item">
+				<span class="nav-link" (click)="selectTab(3)" [class.active]="activeTab==3">
+					Profile data
+				</span>
+			</li>
+		</ul>
+			</div>
+			<div class="col-md-12">
+				<div class="tab" [hidden]="activeTab!==1">
+					
+					<div class="image-wrapper" *ngFor="let image of images | async">
+						
+						<image-card [image]="image" [secure]="true" >
+						</image-card>
+					</div>
+				</div>
+				<div class="tab" [hidden]="activeTab!==2" >
+					<upload-form (uploaded)="onUpload($event)"></upload-form>
+				</div>
+				<div class="tab" [hidden]="activeTab!==3" >
+					<table class="table table-hover mt-2">
+						<thead class="thead-dark">
+							<tr>
+								<th>Key</th>
+								<th>Value</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="row">Username</th>
+								<td>{{username | async}}</td>
+							</tr>
+							<tr>
+								<th scope="row">First name</th>
+								<td>{{firstName | async}}</td>
+							</tr>
+							<tr>
+								<th scope="row">Last name</th>
+								<td>{{lastName | async}}</td>
+							</tr>
+							<tr>
+								<th scope="row">Email</th>
+								<td>{{email | async}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		
+		</div>
+		<div class="col-md-4">
+			<alert-box></alert-box>
+		</div>
+	</div>
+	
+</div>

@@ -1,0 +1,9 @@
+<p>
+  test works!
+</p>
+
+<div *ngFor="let image of images | async">
+	<h2>{{image.description}}</h2>
+	<img src="{{image.links[0].href}}" alt="err" />
+	
+</div>

@@ -1,0 +1,19 @@
+
+	<nav class="navbar navbar-dark bg-dark">
+	<a routerLink="/" class="navbar-brand ml-5">ImageUploader</a>
+	<ul class="nav nav-pills justify-content-end" *ngIf="isUserLoggedIn | async">
+		<li class="nav-item" >
+			<button class="btn btn-outline-primary nav-btn bg-light mr-2 text-primary"
+			(click)="goToUserAccountPage()"
+			>{{username | async}}</button>
+		</li>
+		<li class="nav-item">
+			<button class="btn btn-outline-success navbar-btn" 
+			
+				*ngIf="true" (click)="logout()" role="button" >Logout</button>
+		</li>
+	</ul>
+	
+	</nav>
+	<router-outlet></router-outlet>
+
