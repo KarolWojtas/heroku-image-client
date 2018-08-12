@@ -36,6 +36,7 @@
 				'btn-danger': form.invalid&&form.touched,
 				'btn-success': form.valid&&form.touched
 			}">Send</button>
+			<fa-icon [icon]="faSpinner" [hidden]="!uploadPending" spin="true" size="3x" class="float-right"></fa-icon>
 		</form>
 	</div>
 </div>

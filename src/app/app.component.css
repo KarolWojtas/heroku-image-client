@@ -1,0 +1,6 @@
+scroll-top{
+	bottom: 30px;
+	right:10%;
+	z-index: 99;
+	position: fixed;
+}

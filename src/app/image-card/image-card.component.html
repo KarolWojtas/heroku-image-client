@@ -7,5 +7,8 @@
 				<img [attr.src]="image.links[0].href | secure | async" alt="no image" *ngIf="secure===true"/>
 			</div>
 		</div>
-		<div class="card-footer text-muted">by {{image.username}}</div>
+		<div class="card-footer text-muted">
+			<span>by {{image.username}}</span>
+			<span class="float-right" >on {{image.timestamp | date:'short'}}</span> 
+		</div>
 	</div>

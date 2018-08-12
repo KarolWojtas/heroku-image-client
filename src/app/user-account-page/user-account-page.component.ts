@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from "../services/auth.service";
 import { ImageService } from "../services/image.service";
 import { select, NgRedux } from "@angular-redux/store";
-import { IAppState } from "../services/store";
-import { AlertType } from "../services/domain";
+import { IAppState, BASE_URL } from "../services/store";
+import { AlertType, ImagePage } from "../services/domain";
 import { ADD_ALERT } from "../services/actions";
+import { Subject } from "rxjs";
 
 @Component({
   selector: 'app-user-account-page',
@@ -13,16 +14,16 @@ import { ADD_ALERT } from "../services/actions";
 })
 export class UserAccountPageComponent implements OnInit {
   activeTab;
-  images;
+  reloadImagePageSubject = new Subject();
+  firstPageUrl = BASE_URL + '/images/my?page=0&size=3'
   @select(store=>store.user.username) username;
   @select(store=>store.user.firstName) firstName;
   @select(store=>store.user.lastName) lastName;
   @select(store=>store.user.email) email;
-  constructor(private authService: AuthService, private imageService: ImageService, private ngRedux: NgRedux<IAppState>) { }
+  constructor(private ngRedux: NgRedux<IAppState>) { }
 
   ngOnInit() {
-     this.loadImages();
-     
+     this.activeTab=1;
   }
   selectTab(index: number){
       this.activeTab = index;
@@ -36,10 +37,8 @@ export class UserAccountPageComponent implements OnInit {
               date: new Date()
           }
       })
-      this.loadImages();
+      this.reloadImagePageSubject.next("uploaded");
+      
   }
-  loadImages(){
-      this.activeTab=1;
-      this.images = this.imageService.getUserImages(this.authService.username);
-  }
+  
 }

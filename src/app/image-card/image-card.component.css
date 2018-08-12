@@ -1,6 +1,6 @@
 img{
 	max-height: 100%;
-	max-width: 90%;
+	max-width: 100%;
 	margin: auto;
 	display: block;
 }
@@ -8,5 +8,5 @@ div.image-wrapper{
 	height: 300px;
 }
 div.card-wrapper{
-	max-width: 90%;
+	max-width: 100%;
 }

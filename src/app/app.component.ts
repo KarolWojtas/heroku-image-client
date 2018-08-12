@@ -6,6 +6,7 @@ import { Observable } from "rxjs/Observable";
 import 'rxjs/add/operator/map';
 import { Router } from "@angular/router";
 import { REMOVE_ALL_ALERTS } from "./services/actions";
+import { faUserCircle } from  '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -13,9 +14,14 @@ import { REMOVE_ALL_ALERTS } from "./services/actions";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-    
+    faUserCircle = faUserCircle;
+    scrolledFromTopBool =false;
     @select(store => store.user.username) username;
     @select(store => store.isUserLoggedIn) isUserLoggedIn;
+    scrolledFromTop = Observable.fromEvent(document, 'scroll')
+    .map(event=> {
+        return window.scrollY >= 50 ;
+    }).subscribe(scrolled => this.scrolledFromTopBool=scrolled);
     constructor(private authService: AuthService, private ngRedux: NgRedux<IAppState>, private router: Router){}
     ngOnInit(): void {
             this.authService.getUserInfo(localStorage.getItem('token'));

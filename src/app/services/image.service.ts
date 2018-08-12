@@ -21,6 +21,14 @@ export class ImageService {
           return Observable.empty;
       }
   }
+  getImagePageByLink(link: string, secure: boolean){
+      if(!secure){
+          return this.http.get(link, {headers: {'Authorization':''}});
+      } else {
+          return this.http.get(link);
+      }
+      
+  }
   
 }
    

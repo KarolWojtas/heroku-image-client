@@ -1,11 +1,13 @@
 
 	<nav class="navbar navbar-dark bg-dark">
-	<a routerLink="/" class="navbar-brand ml-5">ImageUploader</a>
+	<a routerLink="/" class="navbar-brand"> <h2>ImageUploader</h2> </a>
 	<ul class="nav nav-pills justify-content-end" *ngIf="isUserLoggedIn | async">
 		<li class="nav-item" >
 			<button class="btn btn-outline-primary nav-btn bg-light mr-2 text-primary"
 			(click)="goToUserAccountPage()"
-			>{{username | async}}</button>
+			>
+			<fa-icon [icon]="faUserCircle"></fa-icon>
+			{{username | async}}</button>
 		</li>
 		<li class="nav-item">
 			<button class="btn btn-outline-success navbar-btn" 
@@ -15,5 +17,6 @@
 	</ul>
 	
 	</nav>
+	<scroll-top [hidden]="!scrolledFromTopBool"></scroll-top>
 	<router-outlet></router-outlet>
 

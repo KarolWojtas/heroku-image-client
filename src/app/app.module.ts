@@ -23,6 +23,9 @@ import { UserAccountPageComponent } from './user-account-page/user-account-page.
 import { UserPageGuard } from "./services/guards/user-page-guard.service";
 import { UserAccountPageGuard } from "./services/guards/user-account-page-guard.service";
 import { UploadFormComponent } from './upload-form/upload-form.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ImagePagerComponent } from './image-pager/image-pager.component';
+import { ScrollTopComponent } from './scroll-top/scroll-top.component';
 
 
 @NgModule({
@@ -36,11 +39,14 @@ import { UploadFormComponent } from './upload-form/upload-form.component';
     SecurePipe,
     ImageCardComponent,
     UserAccountPageComponent,
-    UploadFormComponent
+    UploadFormComponent,
+    ImagePagerComponent,
+    ScrollTopComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    FontAwesomeModule,
     RouterModule.forRoot([
             {path: '', component: MainPageComponent},
             {path: 'user/:username', component: UserPageComponent, canActivate: [UserPageGuard]},

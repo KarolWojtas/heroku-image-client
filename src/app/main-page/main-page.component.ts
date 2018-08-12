@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { select } from '@angular-redux/store';
  import { ImageService } from "../services/image.service";
+import { BASE_URL } from "../services/store";
 
 @Component({
   selector: 'main-page',
@@ -8,12 +9,12 @@ import { select } from '@angular-redux/store';
   styleUrls: ['./main-page.component.css']
 })
 export class MainPageComponent implements OnInit {
-    images;
     
-  constructor(private imageService: ImageService) { }
+  firstPageUrl= BASE_URL + '/images?page=0&size=3';
+  constructor() { }
 
   ngOnInit() {
-      this.images = this.imageService.getPublicImages();
+      
   }
 
 }

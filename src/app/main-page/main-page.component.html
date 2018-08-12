@@ -4,11 +4,7 @@
 			<login></login>
 		</div>
 		<div class="col-md-6">
-			
-			<div *ngFor="let image of images | async">
-				<image-card [image]="image" [secure]="false"></image-card>
-			</div>
-			
+			<image-pager [firstPageUrl]="this.firstPageUrl" [secure]="false"></image-pager>
 		</div>
 		<div class="col-md-3">
 			

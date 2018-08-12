@@ -2,6 +2,7 @@
 import { SET_USER, UNSET_USER, ADD_ALERT, REMOVE_ALERT, REMOVE_ALL_ALERTS } from "./actions";
 import { tassign } from 'tassign';
 import { Alert, AlertType } from "./domain";
+import { isDevMode } from "@angular/core";
 
 export interface User {
     firstName: string;
@@ -15,7 +16,7 @@ export interface IAppState {
     isUserLoggedIn: boolean;
     alerts: Alert[];
 }
-export const BASE_URL ='https://karol-auth-server.herokuapp.com'
+export const BASE_URL =isDevMode() ? 'http://localhost:8080':'https://karol-auth-server.herokuapp.com';
 export const INITIAL_STATE: IAppState = {
     user: {
         firstName: 'Stranger',

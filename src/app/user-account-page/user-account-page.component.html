@@ -23,12 +23,7 @@
 			</div>
 			<div class="col-md-12">
 				<div class="tab" [hidden]="activeTab!==1">
-					
-					<div class="image-wrapper" *ngFor="let image of images | async">
-						
-						<image-card [image]="image" [secure]="true" >
-						</image-card>
-					</div>
+					<image-pager [secure]="true" [firstPageUrl]="firstPageUrl" [reloadSubject]="reloadImagePageSubject"></image-pager>
 				</div>
 				<div class="tab" [hidden]="activeTab!==2" >
 					<upload-form (uploaded)="onUpload($event)"></upload-form>

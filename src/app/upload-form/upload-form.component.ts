@@ -4,6 +4,7 @@ import { MyValidators } from "./my-validators";
 import { HttpClient } from "@angular/common/http";
 import { BASE_URL } from "../services/store";
 import { ImageService } from "../services/image.service";
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'upload-form',
@@ -12,6 +13,8 @@ import { ImageService } from "../services/image.service";
 })
 export class UploadFormComponent implements OnInit {
     @Output('uploaded') uploaded =  new EventEmitter();
+    uploadPending = false;
+    faSpinner = faSpinner;
     form = new FormGroup({
         file: new FormControl('', [MyValidators.validFormat, Validators.required]),
         description: new FormControl('',Validators.required),
@@ -43,8 +46,11 @@ export class UploadFormComponent implements OnInit {
       }).subscribe(response => {
           
           if(response['status']!==undefined){
+              this.uploadPending = false;
               this.uploaded.emit(this.selectedFile.name);
-              this.resetFormFIeldValues()
+              this.resetFormFieldValues()
+          } else {
+              this.uploadPending = true
           }
          
       })
@@ -52,7 +58,7 @@ export class UploadFormComponent implements OnInit {
   onFileSelected(event){
       this.selectedFile = event.target.files[0];
   }
-  resetFormFIeldValues(){
+  resetFormFieldValues(){
       this.file.setValue('');
       this.description.setValue('');
       this.isPublic.setValue('false');
