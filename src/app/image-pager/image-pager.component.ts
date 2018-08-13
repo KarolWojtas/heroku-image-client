@@ -46,6 +46,7 @@ export class ImagePagerComponent implements OnInit {
   loadFirstPage(){
       this.imageService.getImagePageByLink(this.firstPageUrl, this.secure)
       .subscribe(response=> {
+          console.log(response)
           this.imagePage = response as ImagePage
       });
   }
