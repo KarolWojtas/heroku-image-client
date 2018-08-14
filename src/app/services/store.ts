@@ -16,7 +16,8 @@ export interface IAppState {
     isUserLoggedIn: boolean;
     alerts: Alert[];
 }
-export const BASE_URL =isDevMode() ? 'http://localhost:8080':'https://karol-auth-server.herokuapp.com';
+export const BASE_URL// ='http://localhost:8080'
+                        = 'https://karol-auth-server.herokuapp.com';
 export const INITIAL_STATE: IAppState = {
     user: {
         firstName: 'Stranger',
