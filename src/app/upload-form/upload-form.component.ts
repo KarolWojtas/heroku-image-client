@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { MyValidators } from "./my-validators";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpEvent, HttpProgressEvent, HttpEventType } from "@angular/common/http";
 import { BASE_URL } from "../services/store";
 import { ImageService } from "../services/image.service";
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
@@ -13,7 +13,7 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 })
 export class UploadFormComponent implements OnInit {
     @Output('uploaded') uploaded =  new EventEmitter();
-    uploadPending = false;
+    progress: number = 0;
     faSpinner = faSpinner;
     form = new FormGroup({
         file: new FormControl('', [MyValidators.validFormat, Validators.required]),
@@ -43,15 +43,12 @@ export class UploadFormComponent implements OnInit {
       this.http.post(BASE_URL+"/images", fd, {
           reportProgress:true,
           observe: 'events'
-      }).subscribe(response => {
+      }).subscribe(event => {
           
-          if(response['status']!==undefined){
-              this.uploadPending = false;
-              this.uploaded.emit(this.selectedFile.name);
-              this.resetFormFieldValues()
-          } else {
-              this.uploadPending = true
-          }
+         switch(event.type){
+         case HttpEventType.UploadProgress : this.handleProgress(event); break;
+         case HttpEventType.Response : this.handleSuccess(event); break;
+         }
          
       })
   }
@@ -62,6 +59,14 @@ export class UploadFormComponent implements OnInit {
       this.file.setValue('');
       this.description.setValue('');
       this.isPublic.setValue('false');
+  }
+  handleSuccess(event: HttpEvent<any>){
+      this.progress = 0;
+      this.uploaded.emit(this.selectedFile.name);
+      this.resetFormFieldValues()
+  }
+  handleProgress(event){
+      this.progress = Math.floor(100 * (event as HttpProgressEvent).loaded / (event as HttpProgressEvent).total);
   }
 
 }
