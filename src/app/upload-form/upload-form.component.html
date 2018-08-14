@@ -42,11 +42,7 @@
 				'btn-danger': form.invalid&&form.touched,
 				'btn-success': form.valid&&form.touched
 			}">Send</button>
-			<div class="float-right">
-				<fa-icon [icon]="faSpinner" [hidden]="!progress" spin="true"
-					size="3x"></fa-icon>
-				<p [hidden]="!progress">{{progress | number}}%</p>
-			</div>
+			
 			<progress-bar [progress]="progress" [hidden]="!progress"></progress-bar>
 		</form>
 	</div>
