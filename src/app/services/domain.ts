@@ -12,8 +12,6 @@ export interface Alert {
 export interface Image {
     id: number;
     description: string;
-    width: number,
-    height: number,
     username: string;
     links: Link[],
     public: boolean;
