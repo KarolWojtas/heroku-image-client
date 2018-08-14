@@ -28,7 +28,7 @@ export class ImagePagerComponent implements OnInit {
   nextPage(){
       if(!this.imagePage.last){
           const nextLink = this.imagePage.links.filter(link => link.rel==='next')[0].href;
-          console.log(nextLink)
+          
           this.imageService.getImagePageByLink(nextLink, this.secure).subscribe(response => {
               this.imagePage = response as ImagePage
           })
@@ -46,7 +46,6 @@ export class ImagePagerComponent implements OnInit {
   loadFirstPage(){
       this.imageService.getImagePageByLink(this.firstPageUrl, this.secure)
       .subscribe(response=> {
-          console.log(response)
           this.imagePage = response as ImagePage
       });
   }

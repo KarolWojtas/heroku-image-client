@@ -35,7 +35,7 @@ export class UploadFormComponent implements OnInit {
       return this.form.get('isPublic');
   }
   submit(){
-      console.log(`file: ${this.file.value} desc: ${this.description.value} public: ${this.isPublic.value} fileReader:`);
+      
       const fd = new FormData();
       fd.append('file', this.selectedFile, this.selectedFile.name );
       fd.append('description', this.description.value);

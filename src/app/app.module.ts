@@ -26,6 +26,7 @@ import { UploadFormComponent } from './upload-form/upload-form.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ImagePagerComponent } from './image-pager/image-pager.component';
 import { ScrollTopComponent } from './scroll-top/scroll-top.component';
+import {ProgressBarModule} from 'angular-progress-bar';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { ScrollTopComponent } from './scroll-top/scroll-top.component';
     BrowserModule,
     HttpClientModule,
     FontAwesomeModule,
+    ProgressBarModule,
     RouterModule.forRoot([
             {path: '', component: MainPageComponent},
             {path: 'user/:username', component: UserPageComponent, canActivate: [UserPageGuard]},
