@@ -9,11 +9,15 @@ import { faLock} from '@fortawesome/free-solid-svg-icons';
 })
 export class ImageCardComponent implements OnInit {
   @Input('image') image: Image;
+  timestamp;
   @Input('secure') secure: boolean;
   faLock = faLock;
-  constructor() { }
+  constructor() { 
+     
+  }
 
   ngOnInit() {
+      
   }
 
 }
