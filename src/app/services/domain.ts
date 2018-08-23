@@ -14,7 +14,7 @@ export interface Image {
     description: string;
     username: string;
     links: Link[],
-    public: boolean;
+    isPublic: boolean;
     timestamp: Date
 }
 export enum FileFormats {
